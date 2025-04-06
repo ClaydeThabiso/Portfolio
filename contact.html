@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Thabiso Shongwe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+    (function(){
+        emailjs.init("wKnhTCM-i3ojCUTTD"); // Replace with your actual Public Key
+    })();
+</script>
+
+    <style>
+        :root {
+            --primary: #3a5eff;
+            --secondary: #00fffd;
+            --accent: #ff3dff;
+            --dark: #0f0c29;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, var(--dark), #302b63, #24243e);
+            background-size: 400% 400%;
+            color: white;
+            min-height: 100vh;
+            animation: gradientBG 15s ease infinite;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Navbar */
+        .navbar {
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            position: relative;
+        }
+        
+        .nav-link.active {
+            color: var(--accent) !important;
+            font-weight: 600;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 0;
+        }
+        
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(58, 94, 255, 0.2);
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h1 {
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            border-radius: 3px;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(58, 94, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.2rem;
+            color: var(--secondary);
+            transition: all 0.3s;
+        }
+        
+        .contact-info-item:hover .contact-icon {
+            background: var(--primary);
+            transform: scale(1.1);
+        }
+        
+        .contact-info-text h4 {
+            margin-bottom: 5px;
+            color: var(--secondary);
+        }
+        
+        .contact-info-text p {
+            margin: 0;
+            opacity: 0.9;
+        }
+        
+        .contact-info-text a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .contact-info-text a:hover {
+            color: var(--secondary);
+        }
+        
+        .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.25rem rgba(58, 94, 255, 0.25);
+            color: white;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+        }
+        
+        .btn-send {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 30px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-send:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(58, 94, 255, 0.3);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            color: white;
+        }
+        
+        .social-link.facebook:hover {
+            background: #3b5998;
+        }
+        
+        .social-link.instagram:hover {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        }
+        
+        .social-link.linkedin:hover {
+            background: #0077b5;
+        }
+        
+        .social-link.github:hover {
+            background: #333;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .contact-section {
+                padding: 60px 0;
+            }
+            
+            .section-title h1 {
+                font-size: 2rem;
+            }
+            
+            .contact-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">THABISO</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto gap-3">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Projects.html">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="contact-card">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="section-title">
+                                    <h1>Get In Touch</h1>
+                                </div>
+                                
+                                <div class="contact-info-item">
+                                    <div class="contact-icon">
+                                        <i class="bi bi-geo-alt"></i>
+                                    </div>
+                                    <div class="contact-info-text">
+                                        <h4>Location</h4>
+                                        <p>Nelspruit, Mpumalanga, South Africa</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-info-item">
+                                    <div class="contact-icon">
+                                        <i class="bi bi-envelope"></i>
+                                    </div>
+                                    <div class="contact-info-text">
+                                        <h4>Email</h4>
+                                        <p><a href="mailto:thabisoclayde@gmail.com">thabisoclayde@gmail.com</a></p>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-info-item">
+                                    <div class="contact-icon">
+                                        <i class="bi bi-phone"></i>
+                                    </div>
+                                    <div class="contact-info-text">
+                                        <h4>Phone</h4>
+                                        <p><a href="tel:+27636097819">063 609 7819</a></p>
+                                    </div>
+                                </div>
+                                
+                                <div class="social-links">
+                                    <a href="https://www.facebook.com/thabisoshongwe.thabiso.7/" class="social-link facebook">
+                                        <i class="bi bi-facebook"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/thabiso_987/?hl=en" class="social-link instagram">
+                                        <i class="bi bi-instagram"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/thabiso-shongwe-0a941a298/" class="social-link linkedin">
+                                        <i class="bi bi-linkedin"></i>
+                                    </a>
+                                    <a href="https://github.com/ClaydeThabiso" class="social-link github">
+                                        <i class="bi bi-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-7 mt-5 mt-lg-0">
+                                <form id="contactForm">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="subject" placeholder="Subject" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea class="form-control" id="message" placeholder="Your Message" required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-send">
+                                        <i class="bi bi-send-fill"></i> Send Message
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-dark">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2024 Thabiso Shongwe. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3">
+                        <a href="https://www.facebook.com/thabisoshongwe.thabiso.7/" class="social-link facebook">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="https://www.instagram.com/thabiso_987/?hl=en" class="social-link instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/thabiso-shongwe-0a941a298/" class="social-link linkedin">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/ClaydeThabiso" class="social-link github">
+                            <i class="bi bi-github"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Form submission handling
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+
+        // Prepare parameters for EmailJS
+        const templateParams = {
+            from_name: name,
+            from_email: email,
+            subject: subject,
+            message: message,
+        };
+
+        emailjs.send("service_vfdhi4q", "template_j2ke18b", templateParams)
+            .then(function(response) {
+                alert("Message sent successfully! Thank you, " + name + ".");
+                document.getElementById("contactForm").reset();
+            }, function(error) {
+                console.error("FAILED...", error);
+                alert("Oops! Something went wrong. Please try again later.");
+            });
+    });
+    </script>
+</body>
+</html>

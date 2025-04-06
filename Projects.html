@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3a5eff;
+            --secondary: #00fffd;
+            --accent: #ff3dff;
+            --dark: #0f0c29;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, var(--dark), #302b63, #24243e);
+            background-size: 400% 400%;
+            color: white;
+            min-height: 100vh;
+            animation: gradientBG 15s ease infinite;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Navbar */
+        .navbar {
+            backdrop-filter: blur(10px);
+           
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            position: relative;
+        }
+        
+        .nav-link.active {
+            color: var(--accent) !important;
+            font-weight: 600;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        /* Projects Section */
+        .projects-section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .section-title h1 {
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            border-radius: 3px;
+        }
+        
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+        
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(58, 94, 255, 0.4);
+        }
+        
+        /* Project Cards */
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-bottom: 30px;
+            height: 100%;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(58, 94, 255, 0.3);
+            border-color: rgba(58, 94, 255, 0.5);
+        }
+        
+        .project-img-container {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .project-card:hover .project-img {
+            transform: scale(1.1);
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .project-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        .project-description {
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .project-tag {
+            background: rgba(58, 94, 255, 0.2);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(58, 94, 255, 0.5);
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            padding: 5px 0;
+        }
+        
+        .project-link:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+        
+        /* Project Modal */
+        .project-modal .modal-content {
+            background: var(--dark);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .project-modal .modal-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .project-modal .modal-footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .modal-tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+        
+        .modal-tech-item {
+            background: rgba(58, 94, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .projects-section {
+                padding: 60px 0;
+            }
+            
+            .section-title h1 {
+                font-size: 2rem;
+            }
+            
+            .filter-buttons {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">THABISO</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto gap-3">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="projects.html">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Projects Section -->
+    <section class="projects-section">
+        <div class="container">
+            <div class="section-title">
+                <h1>My Projects</h1>
+                <p class="text-muted">A collection of my recent work</p>
+            </div>
+            
+            <!-- Filter Buttons -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="python">Python</button>
+                <button class="filter-btn" data-filter="cpp">C++</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="game">Games</button>
+            </div>
+            
+            <!-- Projects Grid -->
+            <div class="row" id="projects-grid">
+                <!-- Project 1: C++ Number Guessing -->
+                <div class="col-lg-4 col-md-6" data-tags="cpp game">
+                    <div class="project-card">
+                        <div class="project-img-container">
+                            <img src="images/png-transparent-guess-the-number-game-android-bengali-android-game-text-logo.png" class="project-img" alt="Number Guessing Game">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">C++ Number Guessing</h3>
+                            <p class="project-description">A console-based number guessing game where the player tries to guess a randomly generated number within attempts.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">C++</span>
+                                <span class="project-tag">Console</span>
+                                <span class="project-tag">Game</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link" data-bs-toggle="modal" data-bs-target="#project1Modal">
+                                    <i class="bi bi-eye-fill"></i> View Details
+                                </a>
+                                <a href="https://github.com/ClaydeThabiso" class="project-link" target="_blank">
+                                    <i class="bi bi-github"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2: Python Squid Game -->
+                <div class="col-lg-4 col-md-6" data-tags="python game">
+                    <div class="project-card">
+                        <div class="project-img-container">
+                            <img src="images/1181582.jpg" class="project-img" alt="Squid Game Simulation">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Python 'Squid Game'</h3>
+                            <p class="project-description">A simulation of the popular show's games with random player movements and eliminations.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Python</span>
+                                <span class="project-tag">Simulation</span>
+                                <span class="project-tag">OOP</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link" data-bs-toggle="modal" data-bs-target="#project2Modal">
+                                    <i class="bi bi-eye-fill"></i> View Details
+                                </a>
+                                <a href="https://github.com/ClaydeThabiso" class="project-link" target="_blank">
+                                    <i class="bi bi-github"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3: Dealership Website -->
+                <div class="col-lg-4 col-md-6" data-tags="web">
+                    <div class="project-card">
+                        <div class="project-img-container">
+                            <img src="images/personalisation.png" class="project-img" alt="Dealership Website">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Dealership Website</h3>
+                            <p class="project-description">An interactive website for a car dealership featuring vehicle listings and contact forms.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">HTML</span>
+                                <span class="project-tag">CSS</span>
+                                <span class="project-tag">Bootstrap</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link" data-bs-toggle="modal" data-bs-target="#project3Modal">
+                                    <i class="bi bi-eye-fill"></i> View Details
+                                </a>
+                                <a href="https://github.com/ClaydeThabiso" class="project-link" target="_blank">
+                                    <i class="bi bi-github"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4: Quick-Math -->
+                <div class="col-lg-4 col-md-6" data-tags="python game">
+                    <div class="project-card">
+                        <div class="project-img-container">
+                            <img src="images/arith-challenge.png" class="project-img" alt="Quick-Math Game">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Quick-Math (Python)</h3>
+                            <p class="project-description">A timed math quiz game that challenges players to solve arithmetic problems quickly.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Python</span>
+                                <span class="project-tag">Game</span>
+                                <span class="project-tag">Console</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link" data-bs-toggle="modal" data-bs-target="#project4Modal">
+                                    <i class="bi bi-eye-fill"></i> View Details
+                                </a>
+                                <a href="https://github.com/ClaydeThabiso" class="project-link" target="_blank">
+                                    <i class="bi bi-github"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5: Password Generator -->
+                <div class="col-lg-4 col-md-6" data-tags="python">
+                    <div class="project-card">
+                        <div class="project-img-container">
+                            <img src="images/PASSWORD-ft-IMAGE.webp" class="project-img" alt="Password Generator">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Password Generator</h3>
+                            <p class="project-description">A secure password generator with customizable length and character sets.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Python</span>
+                                <span class="project-tag">Security</span>
+                                <span class="project-tag">File I/O</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link" data-bs-toggle="modal" data-bs-target="#project5Modal">
+                                    <i class="bi bi-eye-fill"></i> View Details
+                                </a>
+                                <a href="https://github.com/ClaydeThabiso" class="project-link" target="_blank">
+                                    <i class="bi bi-github"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 6: Rock-Paper-Scissors -->
+                <div class="col-lg-4 col-md-6" data-tags="python game">
+                    <div class="project-card">
+                        <div class="project-img-container">
+                            <img src="images/1_hPhzeFD3htF7ly1AMmAVbw.png" class="project-img" alt="Rock Paper Scissors">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Rock-Paper-Scissors</h3>
+                            <p class="project-description">A classic game with a computer opponent that learns from player patterns.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Python</span>
+                                <span class="project-tag">Game</span>
+                                <span class="project-tag">AI</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link" data-bs-toggle="modal" data-bs-target="#project6Modal">
+                                    <i class="bi bi-eye-fill"></i> View Details
+                                </a>
+                                <a href="https://github.com/ClaydeThabiso" class="project-link" target="_blank">
+                                    <i class="bi bi-github"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 7: Dice Simulation -->
+                <div class="col-lg-4 col-md-6" data-tags="python game">
+                    <div class="project-card">
+                        <div class="project-img-container">
+                            <img src="images/Five_ivory_dice.jpg" class="project-img" alt="Dice Simulation">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Dice Simulation</h3>
+                            <p class="project-description">A Python simulation that rolls virtual dice and displays results.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Python</span>
+                                <span class="project-tag">Simulation</span>
+                                <span class="project-tag">Random</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link" data-bs-toggle="modal" data-bs-target="#project7Modal">
+                                    <i class="bi bi-eye-fill"></i> View Details
+                                </a>
+                                <a href="https://github.com/ClaydeThabiso" class="project-link" target="_blank">
+                                    <i class="bi bi-github"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 8: ATM Simulation -->
+                <div class="col-lg-4 col-md-6" data-tags="cpp">
+                    <div class="project-card">
+                        <div class="project-img-container">
+                            <img src="images/db5261190bac91ccc0aa343299489713_screen.jpg" class="project-img" alt="ATM Simulation">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">ATM Simulation</h3>
+                            <p class="project-description">An ATM system simulation in C++ for basic banking operations.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">C++</span>
+                                <span class="project-tag">Console</span>
+                                <span class="project-tag">Banking</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link" data-bs-toggle="modal" data-bs-target="#project8Modal">
+                                    <i class="bi bi-eye-fill"></i> View Details
+                                </a>
+                                <a href="https://github.com/ClaydeThabiso" class="project-link" target="_blank">
+                                    <i class="bi bi-github"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 9: Student Grade Book -->
+                <div class="col-lg-4 col-md-6" data-tags="cpp">
+                    <div class="project-card">
+                        <div class="project-img-container">
+                            <img src="images/thumbs.jpeg" class="project-img" alt="Student Grade Book">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Student Grade Book</h3>
+                            <p class="project-description">A C++ program that manages student grades and saves data to a file.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">C++</span>
+                                <span class="project-tag">File I/O</span>
+                                <span class="project-tag">Data Management</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link" data-bs-toggle="modal" data-bs-target="#project9Modal">
+                                    <i class="bi bi-eye-fill"></i> View Details
+                                </a>
+                                <a href="https://github.com/ClaydeThabiso" class="project-link" target="_blank">
+                                    <i class="bi bi-github"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modals -->
+    <!-- Modal 1: C++ Number Guessing -->
+    <div class="modal fade project-modal" id="project1Modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">C++ Number Guessing Game</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/png-transparent-guess-the-number-game-android-bengali-android-game-text-logo.png" class="img-fluid mb-4 rounded" alt="Number Guessing Game">
+                    <h4>Project Description</h4>
+                    <p>A console-based game where the computer generates a random number between 1-100, and the player has a limited number of attempts to guess it. The game provides hints ("too high" or "too low") after each incorrect guess.</p>
+                    
+                    <div class="modal-tech-list">
+                        <span class="modal-tech-item">C++</span>
+                        <span class="modal-tech-item">Console Application</span>
+                        <span class="modal-tech-item">Random Numbers</span>
+                    </div>
+                    
+                    <h4>Key Features</h4>
+                    <ul>
+                        <li>Random number generation within a specified range</li>
+                        <li>Input validation for user guesses</li>
+                        <li>Difficulty levels with different attempt limits</li>
+                        <li>Score tracking and high score display</li>
+                    </ul>
+                    
+                    <h4>What I Learned</h4>
+                    <p>This project helped me understand fundamental programming concepts like loops, conditionals, and user input handling in C++. It was my first introduction to game logic implementation and taught me how to create interactive console applications.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="https://github.com/ClaydeThabiso" class="btn btn-primary" target="_blank">
+                        <i class="bi bi-github"></i> View on GitHub
+                    </a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 2: Python Squid Game -->
+    <div class="modal fade project-modal" id="project2Modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Python 'Squid Game' Simulation</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/1181582.jpg" class="img-fluid mb-4 rounded" alt="Squid Game Simulation">
+                    <h4>Project Description</h4>
+                    <p>A simulation of the Red Light, Green Light game from the popular Netflix series. The program creates virtual players with different movement patterns and randomly eliminates them based on game rules.</p>
+                    
+                    <div class="modal-tech-list">
+                        <span class="modal-tech-item">Python</span>
+                        <span class="modal-tech-item">OOP</span>
+                        <span class="modal-tech-item">Simulation</span>
+                    </div>
+                    
+                    <h4>Key Features</h4>
+                    <ul>
+                        <li>Object-oriented design with Player and Game classes</li>
+                        <li>Random movement patterns and eliminations</li>
+                        <li>Configurable game parameters (player count, speed, etc.)</li>
+                        <li>Console visualization using ASCII art</li>
+                    </ul>
+                    
+                    <h4>What I Learned</h4>
+                    <p>This was my first major OOP project in Python. I gained experience with class design, inheritance, and managing multiple object instances. It also taught me about random number generation and probability in simulations.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="https://github.com/ClaydeThabiso" class="btn btn-primary" target="_blank">
+                        <i class="bi bi-github"></i> View on GitHub
+                    </a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 3: Dealership Website -->
+    <div class="modal fade project-modal" id="project3Modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Personal Garage Dealership Website</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/personalisation.png" class="img-fluid mb-4 rounded" alt="Dealership Website">
+                    <h4>Project Description</h4>
+                    <p>An interactive website for a car dealership featuring vehicle listings, search functionality, and contact forms built with HTML and CSS.</p>
+                    
+                    <div class="modal-tech-list">
+                        <span class="modal-tech-item">HTML</span>
+                        <span class="modal-tech-item">CSS</span>
+                        <span class="modal-tech-item">Bootstrap</span>
+                    </div>
+                    
+                    <h4>Key Features</h4>
+                    <ul>
+                        <li>Responsive design that works on all devices</li>
+                        <li>Vehicle gallery with filtering options</li>
+                        <li>Contact form with validation</li>
+                        <li>Clean, modern UI design</li>
+                    </ul>
+                    
+                    <h4>What I Learned</h4>
+                    <p>This project helped me understand the fundamentals of web development, including HTML structure, CSS styling, and responsive design principles. I learned how to create forms, style navigation, and organize content effectively.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="https://github.com/ClaydeThabiso" class="btn btn-primary" target="_blank">
+                        <i class="bi bi-github"></i> View on GitHub
+                    </a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 4: Quick-Math -->
+    <div class="modal fade project-modal" id="project4Modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Quick-Math (Python)</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/arith-challenge.png" class="img-fluid mb-4 rounded" alt="Quick-Math Game">
+                    <h4>Project Description</h4>
+                    <p>A timed math quiz game that challenges players to solve arithmetic problems quickly, with difficulty levels and score tracking.</p>
+                    
+                    <div class="modal-tech-list">
+                        <span class="modal-tech-item">Python</span>
+                        <span class="modal-tech-item">Console Game</span>
+                        <span class="modal-tech-item">Timed Quiz</span>
+                    </div>
+                    
+                    <h4>Key Features</h4>
+                    <ul>
+                        <li>Random arithmetic problem generation</li>
+                        <li>Difficulty levels (easy, medium, hard)</li>
+                        <li>Timer and score tracking</li>
+                        <li>Progress tracking across sessions</li>
+                    </ul>
+                    
+                    <h4>What I Learned</h4>
+                    <p>This project helped me understand how to work with Python's time module, handle user input under time constraints, and implement scoring systems. I also learned about basic game loops and state management.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="https://github.com/ClaydeThabiso" class="btn btn-primary" target="_blank">
+                        <i class="bi bi-github"></i> View on GitHub
+                    </a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 5: Password Generator -->
+    <div class="modal fade project-modal" id="project5Modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Password Generator (Python)</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/PASSWORD-ft-IMAGE.webp" class="img-fluid mb-4 rounded" alt="Password Generator">
+                    <h4>Project Description</h4>
+                    <p>A secure password generator with customizable length and character sets, featuring the ability to save passwords to a file.</p>
+                    
+                    <div class="modal-tech-list">
+                        <span class="modal-tech-item">Python</span>
+                        <span class="modal-tech-item">Security</span>
+                        <span class="modal-tech-item">File I/O</span>
+                    </div>
+                    
+                    <h4>Key Features</h4>
+                    <ul>
+                        <li>Customizable password length (8-64 characters)</li>
+                        <li>Option to include/exclude character types (symbols, numbers, etc.)</li>
+                        <li>Password strength evaluation</li>
+                        <li>Save passwords to encrypted file</li>
+                    </ul>
+                    
+                    <h4>What I Learned</h4>
+                    <p>This project taught me about Python's random and string modules, file operations, and basic security principles. I learned how to generate cryptographically strong passwords and handle file storage securely.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="https://github.com/ClaydeThabiso" class="btn btn-primary" target="_blank">
+                        <i class="bi bi-github"></i> View on GitHub
+                    </a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 6: Rock-Paper-Scissors -->
+    <div class="modal fade project-modal" id="project6Modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Rock-Paper-Scissors (Python)</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/1_hPhzeFD3htF7ly1AMmAVbw.png" class="img-fluid mb-4 rounded" alt="Rock Paper Scissors">
+                    <h4>Project Description</h4>
+                    <p>A classic game with a computer opponent that learns from player patterns to improve its strategy over time.</p>
+                    
+                    <div class="modal-tech-list">
+                        <span class="modal-tech-item">Python</span>
+                        <span class="modal-tech-item">Game</span>
+                        <span class="modal-tech-item">Simple AI</span>
+                    </div>
+                    
+                    <h4>Key Features</h4>
+                    <ul>
+                        <li>Traditional Rock-Paper-Scissors gameplay</li>
+                        <li>Computer opponent with adaptive strategy</li>
+                        <li>Score tracking across multiple rounds</li>
+                        <li>Option for best-of series</li>
+                    </ul>
+                    
+                    <h4>What I Learned</h4>
+                    <p>This project introduced me to basic AI concepts and pattern recognition. I learned how to analyze player behavior and adjust computer strategy accordingly, as well as how to manage game state across multiple rounds.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="https://github.com/ClaydeThabiso" class="btn btn-primary" target="_blank">
+                        <i class="bi bi-github"></i> View on GitHub
+                    </a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 7: Dice Simulation -->
+    <div class="modal fade project-modal" id="project7Modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Dice Simulation (Python)</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/Five_ivory_dice.jpg" class="img-fluid mb-4 rounded" alt="Dice Simulation">
+                    <h4>Project Description</h4>
+                    <p>A Python simulation that rolls virtual dice and displays results, with options for different dice types and multiple rolls.</p>
+                    
+                    <div class="modal-tech-list">
+                        <span class="modal-tech-item">Python</span>
+                        <span class="modal-tech-item">Simulation</span>
+                        <span class="modal-tech-item">Probability</span>
+                    </div>
+                    
+                    <h4>Key Features</h4>
+                    <ul>
+                        <li>Support for standard dice (d4, d6, d8, d10, d12, d20)</li>
+                        <li>Option for multiple dice rolls</li>
+                        <li>Statistics and probability calculations</li>
+                        <li>Visual representation of results</li>
+                    </ul>
+                    
+                    <h4>What I Learned</h4>
+                    <p>This project helped me understand probability distributions and random number generation in Python. I learned how to create configurable simulations and display results in an understandable way.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="https://github.com/ClaydeThabiso" class="btn btn-primary" target="_blank">
+                        <i class="bi bi-github"></i> View on GitHub
+                    </a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 8: ATM Simulation -->
+    <div class="modal fade project-modal" id="project8Modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">ATM Simulation (C++)</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/db5261190bac91ccc0aa343299489713_screen.jpg" class="img-fluid mb-4 rounded" alt="ATM Simulation">
+                    <h4>Project Description</h4>
+                    <p>An ATM system simulation in C++ for basic banking operations including withdrawals, deposits, and balance checks.</p>
+                    
+                    <div class="modal-tech-list">
+                        <span class="modal-tech-item">C++</span>
+                        <span class="modal-tech-item">Console</span>
+                        <span class="modal-tech-item">Banking</span>
+                    </div>
+                    
+                    <h4>Key Features</h4>
+                    <ul>
+                        <li>User authentication with PIN</li>
+                        <li>Account balance management</li>
+                        <li>Transaction history</li>
+                        <li>Error handling for invalid inputs</li>
+                    </ul>
+                    
+                    <h4>What I Learned</h4>
+                    <p>This project taught me about secure input handling, basic financial transaction logic, and state management in console applications. I gained experience with structuring larger C++ projects and implementing robust error handling.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="https://github.com/ClaydeThabiso" class="btn btn-primary" target="_blank">
+                        <i class="bi bi-github"></i> View on GitHub
+                    </a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 9: Student Grade Book -->
+    <div class="modal fade project-modal" id="project9Modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Student Grade Book (C++)</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/thumbs.jpeg" class="img-fluid mb-4 rounded" alt="Student Grade Book">
+                    <h4>Project Description</h4>
+                    <p>A C++ program that manages student grades and saves the data to a file for future access, with options to add, edit, and view student records.</p>
+                    
+                    <div class="modal-tech-list">
+                        <span class="modal-tech-item">C++</span>
+                        <span class="modal-tech-item">File I/O</span>
+                        <span class="modal-tech-item">Data Management</span>
+                    </div>
+                    
+                    <h4>Key Features</h4>
+                    <ul>
+                        <li>Add, edit, and delete student records</li>
+                        <li>Calculate averages and letter grades</li>
+                        <li>Save data to and load from files</li>
+                        <li>Search and filter functionality</li>
+                    </ul>
+                    
+                    <h4>What I Learned</h4>
+                    <p>This project helped me understand file operations in C++, including reading and writing structured data. I learned about data persistence, record management, and how to create a basic CRUD (Create, Read, Update, Delete) application.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="https://github.com/ClaydeThabiso" class="btn btn-primary" target="_blank">
+                        <i class="bi bi-github"></i> View on GitHub
+                    </a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Filter projects
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectItems = document.querySelectorAll('[data-tags]');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    const filterValue = button.getAttribute('data-filter');
+                    
+                    // Filter projects
+                    projectItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-tags').includes(filterValue)) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Animate project cards on scroll
+            const animateOnScroll = () => {
+                const cards = document.querySelectorAll('.project-card');
+                cards.forEach((card, index) => {
+                    const cardPosition = card.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (cardPosition < screenPosition) {
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    }
+                });
+            };
+            
+            // Set initial state for animation
+            document.querySelectorAll('.project-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.5s ease';
+            });
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Run once on load
+        });
+    </script>
+</body>
+</html>
