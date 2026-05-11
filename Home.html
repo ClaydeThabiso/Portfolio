@@ -670,43 +670,45 @@
     #typed {
         animation: blink 0.8s infinite;
     }
-    .hero-socials {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-}
-/* Social Links */
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-        }
-        
-        .social-link {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            transition: all 0.3s;
-            text-decoration-line: none;
-        }
-        
-        .social-link:hover {
-            transform: translateY(-5px) scale(1.1);
-            color: white;
-        }
-        .social-link.linkedin:hover {
-            background: #0077b5;
-        }
-        
-        .social-link.github:hover {
-            background: #333;
-        }
 
+    .hero-socials {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    /* Social Links */
+    .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+    }
+
+    .social-link {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        transition: all 0.3s;
+        text-decoration-line: none;
+    }
+
+    .social-link:hover {
+        transform: translateY(-5px) scale(1.1);
+        color: white;
+    }
+
+    .social-link.linkedin:hover {
+        background: #0077b5;
+    }
+
+    .social-link.github:hover {
+        background: #333;
+    }
 </style>
 
 <body>
@@ -749,19 +751,19 @@
             <h2 class="typing-text">I'm <span id="typed"></span></h2>
             <p class="tagline">I am a passionate developer and Computer Science student, exploring innovative solutions
                 through coding.</p>
-                
+
 
             <a href="Resume\My CV.pdf" class="btn-resume mb-4" download="Thabiso_Shongwe_Resume.pdf">
                 Download Resume
             </a>
             <div class="hero-socials mt-1">
-                    <a href="https://github.com/ClaydeThabiso"  class="social-link github">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/your-linkedin/"  class="social-link linkedin">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                </div>
+                <a href="https://github.com/ClaydeThabiso" class="social-link github">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/your-linkedin/" class="social-link linkedin">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
         </section>
 
         <!-- Projects Section -->
@@ -793,14 +795,38 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="project-card">
-                    <img src="images/vendor-management-business-process-color-icon-vector-illustration-sign-isolated-symbol-347118387.webp" alt="Project 4" class="project-img">
+                    <img src="images/disasterRouting.png" alt="Project 3" class="project-img">
+                    <div class="project-info">
+                        <h3 class="project-title">Disaster Relief Routing System</h3>
+                        <p class="project-desc">Developed a Disaster Relief Routing System that transforms map images
+                            into navigable graphs and computes
+                            optimal safe paths using Dijkstra’s algorithm with risk-aware weighting</p>
+                        <div class="project-tags">
+                            <span class="tag">Java</span>
+                            <span class="tag">JavaFx</span>
+                            <span class="tag">Dijkstra’s</span>
+                            <span class="tag">DSA</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://youtu.be/g7pq5M_sP38"><i class="fas fa-external-link-alt"></i> Youtube
+                                Demo</a>
+                            <a href="https://github.com/ClaydeThabiso/DisasterRouting"><i class="fab fa-github"></i>
+                                Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="images/vendor-management-business-process-color-icon-vector-illustration-sign-isolated-symbol-347118387.webp"
+                        alt="Project 4" class="project-img">
                     <div class="project-info">
                         <h3 class="project-title">Vendor Connect</h3>
                         <p class="project-desc">
-                            VendorConnect is a web-based platform designed to streamline the connection between vendors and event
-                            organizers. The system supports vendor registration, event applications, approval workflows, notifications, and
+                            VendorConnect is a web-based platform designed to streamline the connection between vendors
+                            and event
+                            organizers. The system supports vendor registration, event applications, approval workflows,
+                            notifications, and
                             administrative dashboards. </p>
                         <div class="project-tags">
                             <span class="tag">C#</span>
@@ -810,51 +836,16 @@
                             <span class="tag">Bootstrap</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/ClaydeThabiso/VendorConnect"><i class="fab fa-github"></i> Source
+                            <a href="https://github.com/ClaydeThabiso/VendorConnect"><i class="fab fa-github"></i>
+                                Source
                                 Code</a>
                         </div>
                     </div>
                 </div>
                 <!-- Project 2 -->
-                <div class="project-card">
-                    <img src="images/istockphoto-962095876-612x612.jpg" alt="Project 2" class="project-img">
-                    <div class="project-info">
-                        <h3 class="project-title">Banking Web Application</h3>
-                        <p class="project-desc">A user-friendly banking app for managing accounts, viewing balances, and
-                            performing secure transactions with ease.</p>
-                        <div class="project-tags">
-                            <span class="tag">C#</span>
-                            <span class="tag">ASP.NET</span>
-                            <span class="tag">SQL</span>
-                            <span class="tag">Bootstrap</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/ClaydeThabiso/BankingWebApp"><i class="fab fa-github"></i>
-                                Source Code</a>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="project-card">
-                    <img src="images/disasterRouting.png" alt="Project 3" class="project-img">
-                    <div class="project-info">
-                        <h3 class="project-title">Disaster Relief Routing System</h3>
-                        <p class="project-desc">Developed a Disaster Relief Routing System that transforms map images into navigable graphs and computes
-                                optimal safe paths using Dijkstra’s algorithm with risk-aware weighting</p>
-                        <div class="project-tags">
-                            <span class="tag">Java</span>
-                            <span class="tag">JavaFx</span>
-                            <span class="tag">Dijkstra’s</span>
-                            <span class="tag">DSA</span>
-                        </div>
-                        <div class="project-links">
-                             <a href="https://youtu.be/g7pq5M_sP38"><i class="fas fa-external-link-alt"></i> Youtube
-                                Demo</a>
-                            <a href="https://github.com/ClaydeThabiso/DisasterRouting"><i class="fab fa-github"></i>
-                                Source Code</a>
-                        </div>
-                    </div>
-                </div>
+
+                
 
                 <!--project 3-->
                 <div class="project-card">
@@ -880,10 +871,27 @@
                         </div>
                     </div>
                 </div>
+                <div class="project-card">
+                    <img src="images/istockphoto-962095876-612x612.jpg" alt="Project 2" class="project-img">
+                    <div class="project-info">
+                        <h3 class="project-title">Banking Web Application</h3>
+                        <p class="project-desc">A user-friendly banking app for managing accounts, viewing balances, and
+                            performing secure transactions with ease.</p>
+                        <div class="project-tags">
+                            <span class="tag">C#</span>
+                            <span class="tag">ASP.NET</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">Bootstrap</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ClaydeThabiso/BankingWebApp"><i class="fab fa-github"></i>
+                                Source Code</a>
+                        </div>
+                    </div>
+                </div>
 
-                
                 <!-- Project 4 -->
-                
+
                 <!--Project 5-->
                 <div class="project-card">
                     <img src="images/personalisation.png" alt="Project 1" class="project-img">
@@ -1079,48 +1087,48 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const phrases = [
-        "a Computer Science Student",
-        "a Passionate Developer",
-        "an Innovator"
-    ];
+        document.addEventListener('DOMContentLoaded', () => {
+            const phrases = [
+                "a Computer Science Student",
+                "a Passionate Developer",
+                "an Innovator"
+            ];
 
-    const typed = document.getElementById('typed');
-    let i = 0;
-    let j = 0;
-    let currentPhrase = [];
-    let isDeleting = false;
-    let speed = 100;
+            const typed = document.getElementById('typed');
+            let i = 0;
+            let j = 0;
+            let currentPhrase = [];
+            let isDeleting = false;
+            let speed = 100;
 
-    function type() {
-        if (i >= phrases.length) i = 0;
+            function type() {
+                if (i >= phrases.length) i = 0;
 
-        const fullText = phrases[i];
+                const fullText = phrases[i];
 
-        if (isDeleting) {
-            currentPhrase = fullText.substring(0, j--);
-        } else {
-            currentPhrase = fullText.substring(0, j++);
-        }
+                if (isDeleting) {
+                    currentPhrase = fullText.substring(0, j--);
+                } else {
+                    currentPhrase = fullText.substring(0, j++);
+                }
 
-        typed.textContent = currentPhrase;
+                typed.textContent = currentPhrase;
 
-        if (!isDeleting && j === fullText.length + 1) {
-            isDeleting = true;
-            speed = 50;
-        } else if (isDeleting && j === 0) {
-            isDeleting = false;
-            i++;
-            speed = 100;
-        }
+                if (!isDeleting && j === fullText.length + 1) {
+                    isDeleting = true;
+                    speed = 50;
+                } else if (isDeleting && j === 0) {
+                    isDeleting = false;
+                    i++;
+                    speed = 100;
+                }
 
-        setTimeout(type, speed);
-    }
+                setTimeout(type, speed);
+            }
 
-    type();
-});
-</script>
+            type();
+        });
+    </script>
     <script>
         // Initialize Particles.js
         particlesJS("particles-js", {
